@@ -1,24 +1,25 @@
-FROM python
+FROM ubuntu:16.04
 
-# install google chrome
-RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
-RUN sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-RUN apt-get -y update
-RUN apt-get install -y google-chrome-stable
+RUN apt-get update -y && \
+    apt-get install -y python-pip python-dev && \
+    apt-get -y install locales
 
-# install chromedriver
-RUN apt-get install -yqq unzip
-RUN wget -O /tmp/chromedriver.zip http://chromedriver.storage.googleapis.com/`curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE`/chromedriver_linux64.zip
-RUN unzip /tmp/chromedriver.zip chromedriver -d /usr/local/bin/
+# Set the locale
+RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && \
+    locale-gen
+ENV LANG en_US.UTF-8  
+ENV LANGUAGE en_US:en  
+ENV LC_ALL en_US.UTF-8     
 
-# set display port to avoid crash
-ENV DISPLAY=:99
+# We copy just the requirements.txt first to leverage Docker cache
+COPY ./requirements.txt /app/requirements.txt
 
-# install selenium
-RUN pip install selenium  
-RUN pip install webdriver_manager
+WORKDIR /app
 
+RUN pip install -r requirements.txt
 
-COPY automate-bsuir-lms.py /tmp/
+COPY . /app
 
-CMD ["python", "/tmp/automate-bsuir-lms.py"]
+ENTRYPOINT [ "python" ]
+
+CMD [ "app/flask-server.py" ]
