@@ -18,6 +18,8 @@ WORKDIR /app
 
 RUN pip install -r requirements.txt
 
+RUN apt install nano
+
 COPY . /app
 
 ENTRYPOINT [ "python" ]
