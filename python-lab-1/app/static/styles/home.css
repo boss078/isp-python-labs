@@ -1,0 +1,10 @@
+body {
+  margin: 0;
+}
+
+.body-wrapper {
+  background-color: bisque;
+
+  display: flex;
+  flex-direction: column;
+}

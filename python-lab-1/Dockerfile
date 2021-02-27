@@ -22,4 +22,4 @@ COPY . /app
 
 ENTRYPOINT [ "python" ]
 
-CMD [ "app/flask-server.py" ]
+CMD [ "app/server.py" ]
