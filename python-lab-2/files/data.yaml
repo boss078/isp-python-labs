@@ -1,0 +1,44 @@
+test: 0.32
+12: 1
+false:
+- hello
+- true
+- 156
+13.37:
+  something: here
+  this: is
+  this is: my sentence
+my_function:
+  __type__: function
+  args:
+  - arg
+  code: "def simple_i_o_func(arg):\n    print('Perform input')\n    inp = input()\n\
+    \    print(f'Input: {inp}, arg: {arg}')"
+  globals:
+    a: 5
+  name: simple_i_o_func
+my_class:
+  __type__: class
+  members:
+    __init__:
+      __type__: function
+      args:
+      - self
+      - arg_one
+      - arg_two
+      code: "def __init__(self, arg_one, arg_two):\n        print(f'In init. arg_one:\
+        \ {arg_one}, arg_two: {arg_two}')"
+      globals:
+        a: 5
+      name: __init__
+    class_func:
+      __type__: function
+      args:
+      - self
+      code: "def class_func(self):\n        print(f'class_func. global var: {a}')"
+      globals:
+        a: 5
+      name: class_func
+    goodbye: Bye
+    hello: Hi
+  name: SimpleClass

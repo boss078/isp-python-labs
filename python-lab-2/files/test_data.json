@@ -1,0 +1,6 @@
+{ "test": 0.32, "12": 1, "false": [ "hello", true, 156 ], "13.37": { "this": "is", "something": "here", "this is": "my sentence" }, "my_function": { "__type__": "function", "code": "def simple_i_o_func(arg):
+    print('Perform input')
+    inp = input()
+    print(f'Input: {inp}, arg: {arg}')", "name": "simple_i_o_func", "args": [ "arg" ], "globals": { "a": 5 } }, "my_class": { "__type__": "class", "name": "SimpleClass", "members": { "hello": "Hi", "goodbye": "Bye", "__init__": { "__type__": "function", "code": "def __init__(self, arg_one, arg_two):
+        print(f'In init. arg_one: {arg_one}, arg_two: {arg_two}')", "name": "__init__", "args": [ "self", "arg_one", "arg_two" ], "globals": { "a": 5 } }, "class_func": { "__type__": "function", "code": "def class_func(self):
+        print(f'class_func. global var: {a}')", "name": "class_func", "args": [ "self" ], "globals": { "a": 5 } } } } }
